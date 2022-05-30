@@ -5,6 +5,9 @@ import StaffRegistration from './StaffRegistration';
 import { makeStyles, Paper } from '@material-ui/core';
 import api from '../api/StaffApi';
 
+import { useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
 
 const useStyles = makeStyles(theme => ({
     pageContent: {
@@ -20,7 +23,8 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function Staff() {
+function Staff() {
+    const history = useHistory()
     const classes = useStyles();
     const [staffDetails, setStaffDetails] = useState([]);
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
@@ -33,8 +37,8 @@ export default function Staff() {
         const response = api.post("/Staff", staff);
         const allRecords = [...staffDetails, response.data];
         setStaffDetails(allRecords);
+        history.push('/StaffList')
         resetForm();
-        
     }
     return (
         <>
@@ -51,3 +55,5 @@ export default function Staff() {
         </>
     )
 }
+
+export default withRouter(Staff)

@@ -8,6 +8,8 @@ import Controls from '../../Components/Controls/Controls';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import Popup from '../../Components/Popup';
+import ConfirmDialog from '../../Components/Common/ConfirmDialogue';
 
 
 
@@ -25,7 +27,8 @@ const useStyles = makeStyles(theme => ({
 const headCells = [
     { id: 'staffId', label: 'Staff ID' },
     { id: 'staffName', label: 'Staff Name' },
-    { id: 'contactNo', label: 'Contact No' },    
+    { id: 'contactNo', label: 'Contact No' },
+    { id: 'ispermanent', label: 'Is Permanent' },
     { id: 'Email ', label: 'Actions', disableSorting: true }
 ]
 
@@ -74,8 +77,8 @@ export default function StaffList() {
     return (
         <>
             <PageHeader
-                title="Patient Details"
-                subTitle="Manage PAtient Details"
+                title="Staff Details"
+                subTitle="Staff List"
                 icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
             />
 
@@ -88,8 +91,10 @@ export default function StaffList() {
                         (
                             <TableRow key={item.id}>
                                 <TableCell>{item.staffId}</TableCell>
-                                <TableCell>{item.firstName + " " + item.lastName}</TableCell>
+                                <TableCell>{item.firstName + " " + item.middleName +  " " +  + item.lastName}</TableCell>
                                 <TableCell>{item.contactNo}</TableCell>
+                                <TableCell>{item.ispermanent.toString()}</TableCell>
+                                
                                 <TableCell style={{ display: 'flex', margin: '5px' }}>
                                     <Controls.ActionButton color='primary'
                                      onClick={() => { openInPopup(item) }}  >
@@ -116,6 +121,14 @@ export default function StaffList() {
                 </TableBody>
             </TblContainer>
             </Paper>
+            {/* <Popup
+                title="Add Patient" openPopup={openPopup} setOpenPopup={setOpenPopup} >
+                
+            </Popup> */}
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
         </>
     )
 }
