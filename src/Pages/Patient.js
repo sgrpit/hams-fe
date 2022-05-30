@@ -13,6 +13,7 @@ import { Search } from '@material-ui/icons';
 import Popup from '../Components/Popup';
 import api from '../api/PatientAPI';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import ConfirmDialog from '../Components/Common/ConfirmDialogue';
 
 
@@ -39,6 +40,7 @@ const headCells = [
 
 export default function Patient() {
     const classes = useStyles();
+    const histroy = useHistory();
     const [records, setRecords] = useState([]);
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     const [openPopup, setOpenPopup] = useState(false)
@@ -50,7 +52,7 @@ export default function Patient() {
         const fetchPatients = async ()=> {
             try{
                 const response = await api.get('/Patient');
-                setRecords(response.data);
+                setRecords(response.data.data);
                 // console.log(response.data);
             }   
             catch(err){
@@ -82,7 +84,6 @@ export default function Patient() {
         const allRecords = [...records, response.data];
         setRecords(allRecords);
         resetForm();
-        
     }
 
     const onDelete = patientUHID => {

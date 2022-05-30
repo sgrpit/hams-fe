@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Login(props) {
     const classes = useStyles();
     const history  = useHistory();
+    
     const handleLogin = e => {
         e.preventDefault();
-        history.push('/Dashboard');
+        history.push("/Admin");
     }
     return (
         <Grid item xs={12}>

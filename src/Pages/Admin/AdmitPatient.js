@@ -75,8 +75,6 @@ export default function AdmitPatient() {
           {
             data && (<PatientDetails data = {data} />) 
           }
-                     
-            
           </div>
         </div>
       </Paper>

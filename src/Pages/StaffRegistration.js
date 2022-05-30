@@ -131,7 +131,6 @@ export default function StaffRegistration(props) {
                             color="default"
                         />
                 </Grid>
-
             </Grid>
         </Form>
     )

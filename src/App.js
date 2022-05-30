@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './Components/ui/Theme';
@@ -13,6 +13,8 @@ import AdmitPatient from './Pages/Admin/AdmitPatient';
 import AdminForm from './Pages/app' 
 import PatientList from './Pages/PatientList';
 import Dashboard from './Pages/Admin/Dashboard';
+import StaffList from './Pages/Admin/StaffList';
+
 
 
 
@@ -21,16 +23,19 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
-        <Switch>
+        <Header></Header>
+        <Switch>      
+          <Route exact path="/" component={Home}></Route>    
+          <Route path="/Admin" component={Admin} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/Patient" component={Patient} />
+          <Route path="/Staff" component={Staff} />
+          <Route path="/StaffList" component={StaffList} />
+          <Route path="/AdmitPatient" component={AdmitPatient} />
+          <Route path="/AdminForm" component={AdminForm} />
           
-          <Route exact path="/" component={Home}></Route>
-          <Route exact path="/Admin" component={Admin} />
-          <Route exact path="/Dashboard" component={Dashboard} />
-          <Route exact path="/Patient" component={Patient} />
-          <Route exact path="/Staff" component={Staff} />
-          <Route exact path="/AdmitPatient" component={PatientList} />
-          <Route exact path="/AdminForm" component={AdminForm} />
+          {/* <Redirect exact from="/" to={'/home'} /> */}
+          
         </Switch>
       </BrowserRouter>
       <CssBaseline />
@@ -39,3 +44,5 @@ function App() {
 }
 
 export default App;
+
+//export default withRouter(App)
